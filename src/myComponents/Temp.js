@@ -25,7 +25,6 @@ const Temp = () => {
 
       const myNewWeatherObj = {temp, humidity, pressure, speed, name, country, sunset, weatherMood};
       setTempInfo(myNewWeatherObj);
-      console.log(weatherMood);
     } catch (error) {
        console.log(error)
     }
