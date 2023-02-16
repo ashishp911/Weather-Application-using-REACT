@@ -1,7 +1,9 @@
 import React from "react";
 import "./style.css";
 
-const Report = () => {
+
+const Report = ({tempInfo}) => {
+  const {temp, humidity, pressure, speed, name, country, sunnset} = tempInfo;
   return (
     <div>
       <article className="widget">
