@@ -18,15 +18,14 @@ const Temp = () => {
       const {temp, humidity, pressure} = data.main;
       const {speed} = data.wind;
       const {name} = data;
-      const {country, sunnset} = data.sys;
+      const {country, sunset} = data.sys;
       const weatherMood = data.weather[0].description;
 
       //  Making a new object
 
-      const myNewWeatherObj = {temp, humidity, pressure, speed, name, country, sunnset};
+      const myNewWeatherObj = {temp, humidity, pressure, speed, name, country, sunset, weatherMood};
       setTempInfo(myNewWeatherObj);
-      console.log(myNewWeatherObj);
-      
+      console.log(weatherMood);
     } catch (error) {
        console.log(error)
     }

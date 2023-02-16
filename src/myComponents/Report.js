@@ -1,22 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 
 
 const Report = ({tempInfo}) => {
-  const {temp, humidity, pressure, speed, name, country, sunnset} = tempInfo;
+  const [weatherState, setWeatherState] = useState("");
+  const {temp, humidity, pressure, speed, name, country, sunset, weatherMood} = tempInfo;
+  
+  //
+  useEffect(() => {
+    if(weatherMood){
+      switch(weatherMood){
+        case "Clouds":
+          setWeatherState("wi-day-cloudy");
+          break;
+        case "Haze":
+          setWeatherState("wi-fog");
+          break;
+        case "fog":
+          setWeatherState("wi-fog");
+          break;
+        case "Clear":
+          setWeatherState("wi-day-sunny");
+          break;
+        case "smoke":
+          setWeatherState("wi-smoke");
+          break;
+        case "mist":
+          setWeatherState("wi-dust");
+          break;
+        case "overcast clouds":
+          setWeatherState("wi-day-sunny-overcast");
+          break;
+            
+        default:
+          setWeatherState("wi-day-sunny");
+          break;
+      }
+    }
+  }, [weatherMood])
+  
+  
+  // Converting seconds to time
+  let date = new Date(sunset*1000)
+  let timeStr = `${date.getHours()} : ${date.getMinutes()}`
+
   return (
     <div>
       <article className="widget">
         <div className="weatherIcon">
-          <i className="wi wi-day-sunny"></i>
+          <i className={`wi ${weatherState}`}></i>
         </div>
         <div className="weatherInfo">
           <div className="temperature">
-            <span>25&deg;</span>
+            <span>{temp}&deg;C</span>
           </div>
           <div className="description">
-            <div className="weatherCondition">Sunny</div>
-            <div className="place">Buffalo, USA</div>
+            <div className="weatherCondition">{weatherMood}</div>
+            <div className="place">{name}, {country}</div>
           </div>
         </div>
         <div className="date">
@@ -29,7 +69,7 @@ const Report = ({tempInfo}) => {
             <div className="two-sided-section">
               <p><i className={"wi wi-sunset"}></i></p>
               <p className="extra-info-leftside">
-                19:19pm <br />
+                {timeStr} <br />
                 Sunset
               </p>
             </div>
@@ -37,7 +77,7 @@ const Report = ({tempInfo}) => {
             <div className="two-sided-section">
               <p><i className={"wi wi-humidity"}></i></p>
               <p className="extra-info-leftside">
-                19:19pm <br />
+                {humidity} <br />
                 humidity
               </p>
             </div>            
@@ -48,7 +88,7 @@ const Report = ({tempInfo}) => {
           <div className="two-sided-section">
               <p><i className={"wi wi-rain"}></i></p>
               <p className="extra-info-leftside">
-                19:19pm <br />
+                {pressure} <br />
                 Pressure
               </p>
             </div>
@@ -56,8 +96,8 @@ const Report = ({tempInfo}) => {
             <div className="two-sided-section">
               <p><i className={"wi wi-strong-wind"}></i></p>
               <p className="extra-info-leftside">
-                19:19pm <br />
-                Speed
+                {speed} <br />
+                Wind Speed
               </p>
             </div>
             
