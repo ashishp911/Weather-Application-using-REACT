@@ -44,18 +44,18 @@ const Report = () => {
 
           <div className="weather-extra-info">
           <div className="two-sided-section">
-              <p><i className={"wi wi-humidity"}></i></p>
+              <p><i className={"wi wi-rain"}></i></p>
               <p className="extra-info-leftside">
                 19:19pm <br />
-                humidity
+                Pressure
               </p>
             </div>
 
             <div className="two-sided-section">
-              <p><i className={"wi wi-humidity"}></i></p>
+              <p><i className={"wi wi-strong-wind"}></i></p>
               <p className="extra-info-leftside">
                 19:19pm <br />
-                humidity
+                Speed
               </p>
             </div>
             
