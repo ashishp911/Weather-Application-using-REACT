@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import  Report from "./Report"
 
-
 const Temp = () => {
   
   const [seachValue, setSeachValue] = useState("Buffalo");
   const [tempInfo, setTempInfo] = useState({});
-  
+  const API_KEY = process.env.REACT_APP_API_KEY
   //  Fetch real word data
   const getWeatherInfo = async () => {
     try {
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${seachValue}&units=metric&appid=108e77e7b4af8288cdf9f1fa70a1a4a8`
+      
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${seachValue}&units=metric&appid=${API_KEY}`
       const res = await fetch(url);
       const data = await res.json();
 
